@@ -12,8 +12,8 @@ router.get('/health', async (req, res) => {
 router.get('/guests', async (req, res) => {
   try {
     const [guests] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, tel_number, status, mddate from guests;');
-    const [guestCount] = await db.query('select sum(guest_count) from guests');
-    return res.status(200).json({success: true, data: guests, count: guests.length, guestCount});
+    const [guestsCount] = await db.query('select sum(guest_count) as guests from guests');
+    return res.status(200).json({success: true, data: guests, count: guests.length, guestsCount: guestsCount[0]});
   } catch (error) {
     console.error(error);
     return res.status(500).json({msg: 'Internal Error', error});
