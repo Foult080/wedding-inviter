@@ -8,15 +8,27 @@ router.get('/health', async (req, res) => {
   return res.status(200).json({ success: true, version, msg: 'Сервис работает стабильно' })
 })
 
-//get guests
+// get guests
 router.get('/guests', async (req, res) => {
   try {
-    const [guests] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, tel_number, status, mddate from guests;');
-    const [guestsCount] = await db.query('select sum(guest_count) as guests from guests');
-    return res.status(200).json({success: true, data: guests, count: guests.length, guestsCount: guestsCount[0]});
+    const [guests] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests')
+    const [guestsCount] = await db.query('select sum(guest_count) as guests from guests')
+    return res.status(200).json({ success: true, data: guests, count: guests.length, guestsCount: guestsCount[0] })
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({msg: 'Internal Error', error});
+    console.error(error)
+    return res.status(500).json({ msg: 'Internal Error', error })
+  }
+})
+
+// get guest info
+router.get('/guests/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const [rows] = await db.query('id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests where id = ?', [id])
+    return res.status(200).json({ success: true, data: rows[0] })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ msg: 'Internal Error', error })
   }
 })
 

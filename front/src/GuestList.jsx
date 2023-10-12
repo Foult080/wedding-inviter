@@ -47,7 +47,6 @@ const GuestList = () => {
                 <Table.HeaderCell>Приглашение</Table.HeaderCell>
                 <Table.HeaderCell>Придет вместе с</Table.HeaderCell>
                 <Table.HeaderCell>Количество гостей</Table.HeaderCell>
-                <Table.HeaderCell>Телефон для связи</Table.HeaderCell>
                 <Table.HeaderCell>Статус</Table.HeaderCell>
                 <Table.HeaderCell>Дата изменения</Table.HeaderCell>
                 <Table.HeaderCell>Ссылка</Table.HeaderCell>
@@ -60,7 +59,6 @@ const GuestList = () => {
                   <Table.Cell>{item.invite_msg}</Table.Cell>
                   <Table.Cell>{item.additional_guest}</Table.Cell>
                   <Table.Cell>{item.guest_count}</Table.Cell>
-                  <Table.Cell>{item.tel_number}</Table.Cell>
                   <Table.Cell>{convertStatus(item.status)}</Table.Cell>
                   <Table.Cell>{item.mddate}</Table.Cell>
                   <Table.Cell>
