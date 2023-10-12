@@ -1,12 +1,13 @@
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
 import { createMedia } from '@artsy/fresnel'
-import { Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Container, Grid, Header, Image, Loader, Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import wedding from './assets/wed2.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AgreeModal, RejectModal } from './Modals'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -134,28 +135,46 @@ ResponsiveContainer.propTypes = {
 
 const App = () => {
   const params = useParams()
+  const [guest, setGuest] = useState({ success: false, data: null })
 
-  console.log(params)
+  const getGuestInfo = async () => {
+    try {
+      const res = await axios.get('http://95.163.242.71:5000/api/guests/' + params.id)
+      setGuest(res.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    getGuestInfo()
+  }, [])
+
+  const { success, data } = guest
 
   return (
     <ResponsiveContainer>
       <Segment style={{ padding: '8em 0em' }} vertical>
-        <Grid container stackable verticalAlign="middle">
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <Header as="h3" style={{ fontSize: '2em' }}>
-                Владир Иванович,
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>Вы придете отпраздновать с нами этот праздник?</p>
-            </Grid.Column>
-            <Grid.Column floated="right" width={6}>
-              <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                <AgreeModal />
-                <RejectModal />
+        {!success ? (
+          <Loader />
+        ) : (
+          <Grid container stackable verticalAlign="middle">
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Header as="h3" style={{ fontSize: '2em' }}>
+                  {data.invite_msg},
+                </Header>
+                <p style={{ fontSize: '1.33em' }}>Вы придете отпраздновать с нами этот праздник?</p>
               </Grid.Column>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+              <Grid.Column floated="right" width={6}>
+                <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
+                  <AgreeModal guest={data} />
+                  <RejectModal />
+                </Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        )}
       </Segment>
 
       <Segment style={{ padding: '0em' }} vertical>

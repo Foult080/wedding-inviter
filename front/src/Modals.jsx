@@ -2,9 +2,15 @@ import PropTypes from 'prop-types'
 import { Button, Form, Header, Icon, Modal } from 'semantic-ui-react'
 import { useState } from 'react'
 
-export const AgreeModal = () => {
-  const [open, setOpen] = useState(false)
+const options = [
+  { key: 1, text: 1, value: 1 },
+  { key: 2, text: 2, value: 2 },
+  { key: 3, text: 3, value: 3 }
+]
 
+export const AgreeModal = ({ guest }) => {
+  const [open, setOpen] = useState(false)
+  console.log(guest)
   return (
     <Modal
       closeIcon
@@ -18,17 +24,18 @@ export const AgreeModal = () => {
       <Modal.Content>
         <Modal.Description>
           <Form>
-            <Form.Input label="Наименование" labelPosition="right" id="name" name="name" placeholder="Значение справочника" required />
+            <Form.Input label="Фамилия и Имя гостя" icon="user" id="guest" name="guest" placeholder="фамили и имя гостя" required />
             <Form.Input
-              label="Описание"
-              icon="list"
-              labelPosition="right"
+              label="Добавить гостя"
+              icon="user plus"
               type="text"
-              id="description"
-              name="description"
-              placeholder="Подробное описание поля"
+              id="additional_guest"
+              name="additional_guest"
+              placeholder="укажите имя еще одного гостя, который придет с вами"
               required
             />
+            <Form.Input label="Телефон для связи" icon="phone" id="telNumber" name="telNumber" placeholder="контактный телефон" required />
+            <Form.Select fluid label="Всего гостей" options={options} placeholder="Гостей" value={guest.guest_count} />
           </Form>
         </Modal.Description>
       </Modal.Content>
@@ -41,12 +48,7 @@ export const AgreeModal = () => {
 }
 
 AgreeModal.propTypes = {
-  dict: PropTypes.string,
-  item: PropTypes.object,
-  icon: PropTypes.string,
-  color: PropTypes.string,
-  path: PropTypes.string,
-  updateFunc: PropTypes.func
+  guest: PropTypes.object
 }
 
 export const RejectModal = () => {
