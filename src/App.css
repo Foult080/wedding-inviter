@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.ui.header {
+  font-weight: 100 !important;
+  font-family: Pacifico, cursive !important;
+  color: #00b5ad !important;
+}
+
+#root {
+  font-family: Pacifico, cursive !important;
+  color: #00b5ad;
+  font-weight: 100 !important;
+}
