@@ -1,10 +1,12 @@
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
 import { createMedia } from '@artsy/fresnel'
-import { Button, Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import wedding from './assets/wed2.svg'
 import { useState } from 'react'
+import { AgreeModal, RejectModal } from './Modals'
+import { useParams } from 'react-router-dom'
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -54,7 +56,7 @@ const HomepageHeading = ({ mobile }) => {
           fontFamily: 'Pacifico, cursive',
           fontSize: mobile ? '2em' : '4em',
           fontWeight: '100',
-          marginTop: mobile ? '0.5em' : '1.5em',
+          marginTop: mobile ? '0.1rem' : '0.5rem',
           color: '#00b5ad'
         }}
       />
@@ -131,6 +133,10 @@ ResponsiveContainer.propTypes = {
 }
 
 const App = () => {
+  const params = useParams()
+
+  console.log(params)
+
   return (
     <ResponsiveContainer>
       <Segment style={{ padding: '8em 0em' }} vertical>
@@ -138,18 +144,14 @@ const App = () => {
           <Grid.Row>
             <Grid.Column width={8}>
               <Header as="h3" style={{ fontSize: '2em' }}>
-                Владир Иванович
+                Владир Иванович,
               </Header>
               <p style={{ fontSize: '1.33em' }}>Вы придете отпраздновать с нами этот праздник?</p>
             </Grid.Column>
             <Grid.Column floated="right" width={6}>
               <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button color="teal" size="huge">
-                  Приду
-                </Button>
-                <Button color="red" size="huge">
-                  Нет возможности
-                </Button>
+                <AgreeModal />
+                <RejectModal />
               </Grid.Column>
             </Grid.Column>
           </Grid.Row>
