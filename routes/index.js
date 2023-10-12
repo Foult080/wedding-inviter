@@ -24,7 +24,7 @@ router.get('/guests', async (req, res) => {
 router.get('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const [rows] = await db.query('id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests where id = ?', [id])
+    const [rows] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests where id = ?', [id])
     return res.status(200).json({ success: true, data: rows[0] })
   } catch (error) {
     console.error(error)
