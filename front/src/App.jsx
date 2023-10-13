@@ -136,11 +136,13 @@ ResponsiveContainer.propTypes = {
 const App = () => {
   const params = useParams()
   const [guest, setGuest] = useState({ success: false, data: null })
-
+  const [decision, setDecision] = useState({ status: false, result: null })
   const getGuestInfo = async () => {
     try {
-      const res = await axios.get('http://95.163.242.71:5000/api/guests/' + params.id)
-      setGuest(res.data)
+      const { data } = await axios.get('http://95.163.242.71:5000/api/guests/' + params.id)
+      setGuest(data)
+      if (data.data.status === 2) setDecision({ status: true, result: true })
+      if (data.data.status === 3) setDecision({ status: true, decision: false })
     } catch (error) {
       console.error(error)
     }
@@ -151,6 +153,7 @@ const App = () => {
   }, [])
 
   const { success, data } = guest
+  console.log(decision)
 
   return (
     <ResponsiveContainer>
@@ -159,7 +162,32 @@ const App = () => {
           <Loader />
         ) : (
           <Grid container stackable verticalAlign="middle">
-            {data.status === 1 ? (
+            {decision.status ? (
+              decision.result === true ? (
+                <Grid.Row>
+                  <Grid.Column textAlign="center">
+                    <Header as="h3" style={{ fontSize: '2em' }}>
+                      {data.invite_msg},
+                    </Header>
+                    <p style={{ fontSize: '1.33em' }}>Мы очень рады, что вы приняли наше приглашение </p>
+                    <AgreeModal setDecision={setDecision} guest={data} msg="Изменить запись" />
+                    <RejectModal setDecision={setDecision} id={data.id} />
+                  </Grid.Column>
+                </Grid.Row>
+              ) : (
+                <Grid.Row>
+                  <Grid.Column textAlign="center">
+                    <Header as="h3" style={{ fontSize: '2em' }}>
+                      {data.invite_msg},
+                    </Header>
+                    <p style={{ fontSize: '1.33em' }}>
+                      Нам очень жаль, что вы не приняли наше приглашение. Если планы изменяться, то вы можете изменить ваше решение
+                    </p>
+                    <AgreeModal setDecision={setDecision} guest={data} msg="Принять приглашение" />
+                  </Grid.Column>
+                </Grid.Row>
+              )
+            ) : data.status === 1 ? (
               <Grid.Row>
                 <Grid.Column width={8}>
                   <Header as="h3" style={{ fontSize: '2em' }}>
@@ -169,8 +197,8 @@ const App = () => {
                 </Grid.Column>
                 <Grid.Column floated="right" width={6}>
                   <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AgreeModal guest={data} msg="Принять приглашение" />
-                    <RejectModal />
+                    <AgreeModal setDecision={setDecision} guest={data} msg="Принять приглашение" />
+                    <RejectModal setDecision={setDecision} id={data.id} />
                   </Grid.Column>
                 </Grid.Column>
               </Grid.Row>
@@ -184,7 +212,8 @@ const App = () => {
                 </Grid.Column>
                 <Grid.Column floated="right" width={6}>
                   <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AgreeModal guest={data} msg="Изменить решение" />
+                    <AgreeModal setDecision={setDecision} guest={data} msg="Изменить запись" />
+                    <RejectModal setDecision={setDecision} guest={data} id={data.id} />
                   </Grid.Column>
                 </Grid.Column>
               </Grid.Row>

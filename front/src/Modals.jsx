@@ -17,7 +17,8 @@ const sendData = async (agreement, id) => {
   }
 }
 
-export const AgreeModal = ({ guest, msg }) => {
+export const AgreeModal = ({ guest, msg, setDecision }) => {
+  console.log(guest)
   const [open, setOpen] = useState(false)
   const [addGuest, setAddGuest] = useState(guest.additional_guest ? true : false)
   const [agreement, setAgreement] = useState({
@@ -39,6 +40,7 @@ export const AgreeModal = ({ guest, msg }) => {
     await sendData(agreement, guest.id).then(() => {
       setOpen(false)
       setAddGuest(false)
+      setDecision({ status: true, result: true })
     })
   }
   return (
@@ -115,7 +117,7 @@ export const AgreeModal = ({ guest, msg }) => {
   )
 }
 
-AgreeModal.propTypes = { guest: PropTypes.object, msg: PropTypes.string }
+AgreeModal.propTypes = { guest: PropTypes.object, msg: PropTypes.string, setDecision: PropTypes.func }
 
 const sendReject = async (id) => {
   try {
@@ -125,12 +127,14 @@ const sendReject = async (id) => {
   }
 }
 
-export const RejectModal = ({ id }) => {
+export const RejectModal = ({ id, setDecision }) => {
+  console.log(id)
   const [open, setOpen] = useState(false)
 
   const clickReject = async () => {
     await sendReject(id)
     setOpen(false)
+    setDecision({ status: true, result: false })
   }
 
   return (
@@ -161,4 +165,4 @@ export const RejectModal = ({ id }) => {
   )
 }
 
-RejectModal.propTypes = { id: PropTypes.string }
+RejectModal.propTypes = { id: PropTypes.string, setDecision: PropTypes.func }
