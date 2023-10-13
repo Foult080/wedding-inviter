@@ -60,7 +60,7 @@ router.delete('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
     const mddate = new Date()
-    await db.query('update guest set mddate = ?, status = 3, guest_count = null where id = ?', [mddate, id])
+    await db.query('update guests set mddate = ?, status = 3, guest_count = null where id = ?', [mddate, id])
     return res.status(200).json({ msg: 'Запись успешно изменена' })
   } catch (error) {
     console.error(error)
