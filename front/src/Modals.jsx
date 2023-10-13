@@ -18,7 +18,6 @@ const sendData = async (agreement, id) => {
 }
 
 export const AgreeModal = ({ guest, msg, setDecision }) => {
-  console.log(guest)
   const [open, setOpen] = useState(false)
   const [addGuest, setAddGuest] = useState(guest.additional_guest ? true : false)
   const [agreement, setAgreement] = useState({
@@ -128,7 +127,6 @@ const sendReject = async (id) => {
 }
 
 export const RejectModal = ({ id, setDecision }) => {
-  console.log(id)
   const [open, setOpen] = useState(false)
 
   const clickReject = async () => {

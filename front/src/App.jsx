@@ -37,50 +37,52 @@ const HomepageHeading = ({ mobile }) => {
   setInterval(count, 1000)
 
   return (
-    <Container>
-      <Header
-        as="h2"
-        content="Приглашение на свадьбу"
-        style={{
-          fontFamily: 'Pacifico, cursive',
-          fontSize: mobile ? '1.5em' : '1.7em',
-          fontWeight: '100',
-          marginBottom: 0,
-          marginTop: mobile ? '1.5em' : '3em',
-          color: '#00b5ad'
-        }}
-      />
-      <Header
-        as="h1"
-        content="Виталия и Ксении"
-        style={{
-          fontFamily: 'Pacifico, cursive',
-          fontSize: mobile ? '2em' : '4em',
-          fontWeight: '100',
-          marginTop: mobile ? '0.1rem' : '0.5rem',
-          color: '#00b5ad'
-        }}
-      />
-      <Image src={wedding} size="medium" centered />
-      <Header
-        as="h2"
-        style={{
-          fontFamily: 'Pacifico, cursive',
-          fontWeight: '100',
-          color: '#00b5ad'
-        }}
-        content={'До события осталось:'}
-      />
-      <Header
-        as="h1"
-        style={{
-          fontFamily: 'Pacifico, cursive',
-          fontWeight: '100',
-          color: '#00b5ad'
-        }}
-        content={days.days + ' дней ' + days.hours + ' часов ' + days.minutes + ' минут ' + days.seconds + ' секунд'}
-      />
-    </Container>
+    <div style={{ marginTop: mobile ? '160px' : '0px' }}>
+      <Container>
+        <Header
+          as="h2"
+          content="Приглашение на свадьбу"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1.5em' : '1.7em',
+            fontWeight: '100',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+            color: '#00b5ad'
+          }}
+        />
+        <Header
+          as="h1"
+          content="Виталия и Ксении"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '2em' : '4em',
+            fontWeight: '100',
+            marginTop: mobile ? '0.1rem' : '0.5rem',
+            color: '#00b5ad'
+          }}
+        />
+        <Image src={wedding} size="medium" centered />
+        <Header
+          as="h2"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontWeight: '100',
+            color: '#00b5ad'
+          }}
+          content={'До события осталось:'}
+        />
+        <Header
+          as="h1"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontWeight: '100',
+            color: '#00b5ad'
+          }}
+          content={days.days + ' дней ' + days.hours + ' часов ' + days.minutes + ' минут ' + days.seconds + ' секунд'}
+        />
+      </Container>
+    </div>
   )
 }
 
@@ -91,7 +93,11 @@ HomepageHeading.propTypes = {
 const DesktopContainer = ({ children }) => {
   return (
     <Media greaterThan="mobile">
-      <Segment textAlign="center" style={{ minHeight: 700, padding: '1em 0em' }} vertical>
+      <Segment
+        textAlign="center"
+        style={{ minHeight: 700, padding: '1em 0em', backgroundImage: "url('/wall.svg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+        vertical
+      >
         <HomepageHeading />
       </Segment>
       {children}
@@ -106,7 +112,17 @@ DesktopContainer.propTypes = {
 const MobileContainer = ({ children }) => {
   return (
     <Media at="mobile">
-      <Segment textAlign="center" style={{ minHeight: 350, padding: '1em 0em' }} vertical>
+      <Segment
+        textAlign="center"
+        style={{
+          minHeight: 350,
+          padding: '1em 0em',
+          backgroundImage: "url('/wallmobile.svg')",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
+        }}
+        vertical
+      >
         <HomepageHeading mobile />
       </Segment>
       {children}
@@ -119,11 +135,7 @@ MobileContainer.propTypes = {
 }
 
 const ResponsiveContainer = ({ children }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
-  <MediaContextProvider>
+  <MediaContextProvider id="media-context">
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
@@ -153,7 +165,6 @@ const App = () => {
   }, [])
 
   const { success, data } = guest
-  console.log(decision)
 
   return (
     <ResponsiveContainer>
