@@ -151,7 +151,7 @@ const App = () => {
   const [decision, setDecision] = useState({ status: false, result: null })
   const getGuestInfo = async () => {
     try {
-      const { data } = await axios.get('http://95.163.242.71:5000/api/guests/' + params.id)
+      const { data } = await axios.get('/api/guests/' + params.id)
       setGuest(data)
       if (data.data.status === 2) setDecision({ status: true, result: true })
       if (data.data.status === 3) setDecision({ status: true, decision: false })

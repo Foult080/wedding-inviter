@@ -20,7 +20,7 @@ const GuestList = () => {
 
   const getListGuest = async () => {
     try {
-      const res = await axios.get('http://95.163.242.71:5000/api/guests')
+      const res = await axios.get('/api/guests')
       setGuests(res.data)
     } catch (error) {
       console.error(error)

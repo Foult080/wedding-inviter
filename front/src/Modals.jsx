@@ -11,7 +11,7 @@ const options = [
 
 const sendData = async (agreement, id) => {
   try {
-    await axios.put('http://95.163.242.71:5000/api/guests/' + id, agreement, { 'Content-Type': 'application/json' })
+    await axios.put('/api/guests/' + id, agreement, { 'Content-Type': 'application/json' })
   } catch (error) {
     console.error(error)
   }
@@ -120,7 +120,7 @@ AgreeModal.propTypes = { guest: PropTypes.object, msg: PropTypes.string, setDeci
 
 const sendReject = async (id) => {
   try {
-    await axios.delete('http://95.163.242.71:5000/api/guests/' + id)
+    await axios.delete('/api/guests/' + id)
   } catch (error) {
     console.error(error)
   }
