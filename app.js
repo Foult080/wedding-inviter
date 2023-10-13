@@ -15,7 +15,7 @@ app.use('/api', require('./routes'))
 // добавляем статичную директорию с билдом фронта
 app.use(express.static(path.join(__dirname, 'frontend', 'build')))
 app.get('*', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, 'front', 'build', 'index.html'))
+  return res.sendFile(path.resolve(__dirname, 'front', 'dist', 'index.html'))
 })
 
 // initial port to star
