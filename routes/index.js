@@ -37,7 +37,7 @@ router.put('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
     const { guest, additionalGuest, telNumber, guestCount } = req.body
-    await db.query('update guests set (guest = ?, additional_guest = ?, tel_number = ?, guest_count = ?) where id = ?', [
+    await db.query('update guests set guest = ?, additional_guest = ?, tel_number = ?, guest_count = ? where id = ?', [
       guest,
       additionalGuest,
       telNumber,
