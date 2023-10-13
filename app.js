@@ -3,8 +3,8 @@ const express = require('express')
 const app = express()
 const path = require('path')
 // cors
-const cors = require('cors')
-app.use(cors())
+// const cors = require('cors')
+// app.use(cors())
 
 // use json encode
 app.use(express.json({ extended: false }))
@@ -13,10 +13,8 @@ app.use(express.json({ extended: false }))
 app.use('/api', require('./routes'))
 
 // добавляем статичную директорию с билдом фронта
-app.use(express.static(path.join(__dirname, 'frontend', 'build')))
-app.get('*', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, 'front', 'dist', 'index.html'))
-})
+app.use(express.static(path.join(__dirname, 'front', 'dist')))
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'front', 'dist', 'index.html')))
 
 // initial port to star
 const PORT = process.env.PORT || 5000
