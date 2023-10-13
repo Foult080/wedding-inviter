@@ -17,9 +17,9 @@ const sendData = async (agreement, id) => {
   }
 }
 
-export const AgreeModal = ({ guest }) => {
+export const AgreeModal = ({ guest, msg }) => {
   const [open, setOpen] = useState(false)
-  const [addGuest, setAddGuest] = useState(false)
+  const [addGuest, setAddGuest] = useState(guest.additional_guest ? true : false)
   const [agreement, setAgreement] = useState({
     guest: guest.guest || '',
     additionalGuest: guest.additional_guest || '',
@@ -29,6 +29,11 @@ export const AgreeModal = ({ guest }) => {
   })
 
   const OnChangeForm = (e, { name, value }) => setAgreement({ ...agreement, [name]: value })
+
+  const clearGuest = () => {
+    setAddGuest(false)
+    setAgreement({ ...agreement, additionalGuest: '' })
+  }
 
   const SubmitForm = async () => {
     await sendData(agreement, guest.id).then(() => {
@@ -43,9 +48,9 @@ export const AgreeModal = ({ guest }) => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button content="Принять приглашение" color="teal" icon="checkmark" size="large" />}
+      trigger={<Button content={msg} color="teal" icon="checkmark" size="large" />}
     >
-      <Modal.Header>Принять приглашение</Modal.Header>
+      <Modal.Header>{msg}</Modal.Header>
       <Modal.Content>
         <Modal.Description>
           <p>* При возникновении осложений с заполнением формы, пожалуйста, обратитесь к отправителю</p>
@@ -75,7 +80,7 @@ export const AgreeModal = ({ guest }) => {
                   onChange={OnChangeForm}
                   required
                 />
-                <Button style={{ marginBottom: '1rem' }} content="Убрать гостя" icon="close" color="red" onClick={() => setAddGuest(false)} />
+                <Button style={{ marginBottom: '1rem' }} content="Убрать гостя" icon="close" color="red" onClick={clearGuest} />
               </>
             )}
             <Form.Input
@@ -110,13 +115,24 @@ export const AgreeModal = ({ guest }) => {
   )
 }
 
-AgreeModal.propTypes = {
-  guest: PropTypes.object
+AgreeModal.propTypes = { guest: PropTypes.object, msg: PropTypes.string }
+
+const sendReject = async (id) => {
+  try {
+    await axios.delete('http://95.163.242.71:5000/api/guests/' + id)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
-// TODO: send req
-export const RejectModal = () => {
+export const RejectModal = ({ id }) => {
   const [open, setOpen] = useState(false)
+
+  const clickReject = async () => {
+    await sendReject(id)
+    setOpen(false)
+  }
+
   return (
     <Modal
       basic
@@ -136,7 +152,7 @@ export const RejectModal = () => {
           <Button color="red" onClick={() => setOpen(false)}>
             <Icon name="remove" /> Отмена
           </Button>
-          <Button color="green">
+          <Button color="green" onClick={clickReject}>
             <Icon name="checkmark" /> Подтвердить
           </Button>
         </div>
@@ -144,3 +160,5 @@ export const RejectModal = () => {
     </Modal>
   )
 }
+
+RejectModal.propTypes = { id: PropTypes.string }

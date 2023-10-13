@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import { Container, Header, Loader, Table } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { formatDateTimeShort } from './utils'
 
 const convertStatus = (status) => {
   switch (status) {
     case 1:
-      return 'Приглашение отправлено'
+      return 'Отправлено'
     case 2:
-      return 'Принял'
+      return 'Принято'
     case 3:
-      return 'Не придет'
+      return 'Отказ'
   }
 }
 
@@ -58,8 +59,10 @@ const GuestList = () => {
                   <Table.Cell>{item.invite_msg}</Table.Cell>
                   <Table.Cell>{item.additional_guest}</Table.Cell>
                   <Table.Cell>{item.guest_count}</Table.Cell>
-                  <Table.Cell>{convertStatus(item.status)}</Table.Cell>
-                  <Table.Cell>{item.mddate}</Table.Cell>
+                  <Table.Cell positive={item.status === 2 && true} error={item.status === 3 && true}>
+                    {convertStatus(item.status)}
+                  </Table.Cell>
+                  <Table.Cell>{formatDateTimeShort(item.mddate)}</Table.Cell>
                   <Table.Cell>
                     <Link to={'http://95.163.242.71:5000/' + item.id}>{'http://95.163.242.71:5000/' + item.id}</Link>
                   </Table.Cell>

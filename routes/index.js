@@ -37,18 +37,34 @@ router.put('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
     const { guest, additionalGuest, telNumber, guestCount, status } = req.body
-    await db.query('update guests set guest = ?, additional_guest = ?, tel_number = ?, guest_count = ?, status = ? where id = ?', [
+    const mddate = new Date()
+    await db.query('update guests set guest = ?, additional_guest = ?, tel_number = ?, guest_count = ?, status = ?, mddate = ? where id = ?', [
       guest,
       additionalGuest,
       telNumber,
       guestCount,
       status,
+      mddate,
       id
     ])
+
     return res.status(200).json({ success: true, msg: 'Запись успешно изменена' })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ msg: 'Internal Error', error })
+  }
+})
+
+// reject invite
+router.delete('/guests/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const mddate = new Date()
+    await db.query('update guest set mddate = ?, status = 3, guest_count = null where id = ?', [mddate, id])
+    return res.status(200).json({ msg: 'Запись успешно изменена' })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ msg: 'Internal error', error })
   }
 })
 

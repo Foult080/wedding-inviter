@@ -169,7 +169,7 @@ const App = () => {
                 </Grid.Column>
                 <Grid.Column floated="right" width={6}>
                   <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AgreeModal guest={data} />
+                    <AgreeModal guest={data} msg="Принять приглашение" />
                     <RejectModal />
                   </Grid.Column>
                 </Grid.Column>
@@ -184,7 +184,7 @@ const App = () => {
                 </Grid.Column>
                 <Grid.Column floated="right" width={6}>
                   <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AgreeModal guest={data} />
+                    <AgreeModal guest={data} msg="Изменить решение" />
                   </Grid.Column>
                 </Grid.Column>
               </Grid.Row>
