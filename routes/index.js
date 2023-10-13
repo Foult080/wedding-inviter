@@ -24,8 +24,27 @@ router.get('/guests', async (req, res) => {
 router.get('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const [rows] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests where id = ?', [id])
+    const [rows] = await db.query('select id, guest, invite_msg, tel_number,additional_guest, guest_count, status, mddate from guests where id = ?', [id])
     return res.status(200).json({ success: true, data: rows[0] })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ msg: 'Internal Error', error })
+  }
+})
+
+// change status
+router.put('/guests/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { guest, additionalGuest, telNumber, guestCount } = req.body
+    await db.query('update guests set(guest = ?, additional_guest = ?, tel_number = ?, guest_count = ?) where id = ?', [
+      guest,
+      additionalGuest,
+      telNumber,
+      guestCount,
+      id
+    ])
+    return res.status(200).json({ success: true, msg: 'Запись успешно изменена' })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ msg: 'Internal Error', error })

@@ -159,20 +159,36 @@ const App = () => {
           <Loader />
         ) : (
           <Grid container stackable verticalAlign="middle">
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Header as="h3" style={{ fontSize: '2em' }}>
-                  {data.invite_msg},
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>Вы придете отпраздновать с нами этот праздник?</p>
-              </Grid.Column>
-              <Grid.Column floated="right" width={6}>
-                <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
-                  <AgreeModal guest={data} />
-                  <RejectModal />
+            {data.status === 1 ? (
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as="h3" style={{ fontSize: '2em' }}>
+                    {data.invite_msg},
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>Вы придете отпраздновать с нами этот праздник?</p>
                 </Grid.Column>
-              </Grid.Column>
-            </Grid.Row>
+                <Grid.Column floated="right" width={6}>
+                  <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <AgreeModal guest={data} />
+                    <RejectModal />
+                  </Grid.Column>
+                </Grid.Column>
+              </Grid.Row>
+            ) : (
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as="h3" style={{ fontSize: '2em' }}>
+                    {data.invite_msg},
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>Вы уже приняли решение, если хотите его изменить, то нажмите на кнопку</p>
+                </Grid.Column>
+                <Grid.Column floated="right" width={6}>
+                  <Grid.Column textAlign="center" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <AgreeModal guest={data} />
+                  </Grid.Column>
+                </Grid.Column>
+              </Grid.Row>
+            )}
           </Grid>
         )}
       </Segment>

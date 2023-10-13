@@ -31,7 +31,6 @@ const GuestList = () => {
   }, [])
 
   const { success, data, guestsCount } = guests
-  console.log(data, guestsCount)
 
   return (
     <Container style={{ marginTop: '2rem' }}>
