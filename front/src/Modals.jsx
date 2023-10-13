@@ -11,10 +11,7 @@ const options = [
 
 const sendData = async (agreement, id) => {
   try {
-    await axios
-      .put('http://95.163.242.71:5000/api/guests/' + id, agreement, { 'Content-Type': 'application/json' })
-      .then((data) => console.log(data))
-      .reject((error) => console.error(error))
+    await axios.put('http://95.163.242.71:5000/api/guests/' + id, agreement, { 'Content-Type': 'application/json' })
   } catch (error) {
     console.error(error)
   }
@@ -27,7 +24,8 @@ export const AgreeModal = ({ guest }) => {
     guest: guest.guest || '',
     additionalGuest: guest.additional_guest || '',
     telNumber: guest.tel_number || '',
-    guestCount: guest.guest_count || 1
+    guestCount: guest.guest_count || 1,
+    status: 2
   })
 
   const OnChangeForm = (e, { name, value }) => setAgreement({ ...agreement, [name]: value })

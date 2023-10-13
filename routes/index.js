@@ -36,12 +36,13 @@ router.get('/guests/:id', async (req, res) => {
 router.put('/guests/:id', async (req, res) => {
   try {
     const { id } = req.params
-    const { guest, additionalGuest, telNumber, guestCount } = req.body
-    await db.query('update guests set guest = ?, additional_guest = ?, tel_number = ?, guest_count = ? where id = ?', [
+    const { guest, additionalGuest, telNumber, guestCount, status } = req.body
+    await db.query('update guests set guest = ?, additional_guest = ?, tel_number = ?, guest_count = ?, status = ? where id = ?', [
       guest,
       additionalGuest,
       telNumber,
       guestCount,
+      status,
       id
     ])
     return res.status(200).json({ success: true, msg: 'Запись успешно изменена' })
