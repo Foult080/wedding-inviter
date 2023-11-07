@@ -1,7 +1,7 @@
 import './App.css'
 import 'semantic-ui-css/semantic.min.css'
 import { createMedia } from '@artsy/fresnel'
-import { Container, Grid, Header, Image, Loader, Segment } from 'semantic-ui-react'
+import { Container, Divider, Grid, Header, Image, Loader, Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import wedding from './assets/wed2.svg'
 import { useEffect, useState } from 'react'
@@ -250,6 +250,37 @@ const App = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+      </Segment>
+
+      <Segment>
+        <Container>
+          <Header as="h2" textAlign="center" style={{ fontSize: '2em' }} content="Мы будем очень рады, если вы поддержите цветовую палитру нашего торжества:" />
+          <Header as="h3" textAlign="center" style={{ fontSize: '1.2em' }} content="Для девушек" />
+          <div>
+            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image circular src="https://placehold.co/100x100/red/red" />
+              <Image circular src="https://placehold.co/100x100/orange/orange" />
+              <Image circular src="https://placehold.co/100x100/teal/teal" />
+              <Image circular src="https://placehold.co/100x100/blue/blue" />
+            </Image.Group>
+            <Divider hidden />
+            <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image circular src="https://placehold.co/100x100/red/red" />
+              <Image circular src="https://placehold.co/100x100/orange/orange" />
+              <Image circular src="https://placehold.co/100x100/teal/teal" />
+            </Image.Group>
+          </div>
+          <Header as="h3" textAlign="center" style={{ fontSize: '1.2em' }} content="Для мужчин" />
+          <div>
+            <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image circular src="https://placehold.co/100x100/red/red" />
+              <Image circular src="https://placehold.co/100x100/orange/orange" />
+              <Image circular src="https://placehold.co/100x100/teal/teal" />
+              <Image circular src="https://placehold.co/100x100/brown/brown" />
+              <Image circular src="https://placehold.co/100x100/black/black" />
+            </Image.Group>
+          </div>
+        </Container>
       </Segment>
 
       <Segment inverted vertical style={{ padding: '5em 0em' }}>
