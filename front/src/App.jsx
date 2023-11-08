@@ -255,29 +255,23 @@ const App = () => {
       <Segment>
         <Container>
           <Header as="h2" textAlign="center" style={{ fontSize: '2em' }} content="Мы будем очень рады, если вы поддержите цветовую палитру нашего торжества:" />
-          <Header as="h3" textAlign="center" style={{ fontSize: '1.2em' }} content="Для девушек" />
           <div>
             <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/red/red" />
-              <Image circular src="https://placehold.co/100x100/orange/orange" />
-              <Image circular src="https://placehold.co/100x100/teal/teal" />
-              <Image circular src="https://placehold.co/100x100/blue/blue" />
+              <Image circular src="https://placehold.co/100x100/d3d4d8/d3d4d8" />
+              <Image circular src="https://placehold.co/100x100/ddc6b6/ddc6b6" />
+              <Image circular src="https://placehold.co/100x100/7d2c19/7d2c19" />
             </Image.Group>
             <Divider hidden />
-            <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/red/red" />
-              <Image circular src="https://placehold.co/100x100/orange/orange" />
-              <Image circular src="https://placehold.co/100x100/teal/teal" />
+            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image circular src="https://placehold.co/100x100/3db0fb/3db0fb" />
+              <Image circular src="https://placehold.co/100x100/4ac6c8/4ac6c8" />
+              <Image circular src="https://placehold.co/100x100/186145/186145" />
             </Image.Group>
-          </div>
-          <Header as="h3" textAlign="center" style={{ fontSize: '1.2em' }} content="Для мужчин" />
-          <div>
-            <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/red/red" />
-              <Image circular src="https://placehold.co/100x100/orange/orange" />
-              <Image circular src="https://placehold.co/100x100/teal/teal" />
-              <Image circular src="https://placehold.co/100x100/brown/brown" />
-              <Image circular src="https://placehold.co/100x100/black/black" />
+            <Divider hidden />
+            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image circular src="https://placehold.co/100x100/eec1be/eec1be" />
+              <Image circular src="https://placehold.co/100x100/e21d4b/e21d4b" />
+              <Image circular src="https://placehold.co/100x100/71152b/71152b" />
             </Image.Group>
           </div>
         </Container>
