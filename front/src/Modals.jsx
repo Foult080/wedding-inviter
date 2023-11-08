@@ -142,7 +142,7 @@ export const RejectModal = ({ id, setDecision }) => {
       onOpen={() => setOpen(true)}
       open={open}
       size="small"
-      trigger={<Button content="Нет возможности" icon="remove" color="red" size="large" />}
+      trigger={<Button style={{ marginTop: '0.5rem' }} content="Нет возможности" icon="remove" color="red" size="large" />}
     >
       <Header icon>
         <Icon name="remove" />

@@ -225,7 +225,7 @@ const App = () => {
                     </Header>
                     <p style={{ fontSize: '1.33em' }}>Мы очень рады, что вы приняли наше приглашение </p>
                     <AgreeModal setDecision={setDecision} guest={data} msg="Изменить запись" />
-                    <RejectModal style={{ marginTop: '0.5rem' }} setDecision={setDecision} id={data.id} />
+                    <RejectModal setDecision={setDecision} id={data.id} />
                   </Grid.Column>
                 </Grid.Row>
               ) : (
