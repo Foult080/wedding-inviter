@@ -13,3 +13,12 @@
   color: #266d69;
   font-weight: 300 !important;
 }
+
+.ui.button {
+  font-family: 'Cormorant', serif !important;
+}
+
+#button {
+  font-weight: 200 !important;
+  font-family: 'Cormorant', serif !important;
+}
