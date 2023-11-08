@@ -57,11 +57,11 @@ export const AgreeModal = ({ guest, msg, setDecision }) => {
           <p>* При возникновении осложений с заполнением формы, пожалуйста, обратитесь к отправителю</p>
           <Form>
             <Form.Input
-              label="Фамилия и Имя гостя"
+              label="Фамилия и Имя"
               icon="user"
               id="guest"
               name="guest"
-              placeholder="фамили и имя гостя"
+              placeholder="фамилия и имя"
               value={agreement.guest}
               onChange={OnChangeForm}
               required

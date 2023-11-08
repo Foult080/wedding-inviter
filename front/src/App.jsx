@@ -225,7 +225,7 @@ const App = () => {
                     </Header>
                     <p style={{ fontSize: '1.33em' }}>Мы очень рады, что вы приняли наше приглашение </p>
                     <AgreeModal setDecision={setDecision} guest={data} msg="Изменить запись" />
-                    <RejectModal setDecision={setDecision} id={data.id} />
+                    <RejectModal style={{ marginTop: '0.5rem' }} setDecision={setDecision} id={data.id} />
                   </Grid.Column>
                 </Grid.Row>
               ) : (
@@ -295,7 +295,7 @@ const App = () => {
                 <Header as="h3" style={{ fontSize: '2em' }}>
                   Банкет
                 </Header>
-                <p style={{ fontSize: '1.33em' }}>Банкет пройдет в ресторан Buon Gusto по адресу ул. Молокова 1, к 1.</p>
+                <p style={{ fontSize: '1.33em' }}>Банкет пройдет в ресторанe Buon Gusto по адресу ул. Молокова 1, к 1.</p>
                 <p style={{ fontSize: '1.33em' }}> Сбор гостей в 16:00</p>
               </div>
             </Grid.Column>
