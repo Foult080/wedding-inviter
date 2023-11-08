@@ -1,13 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&family=Pacifico&display=swap');
 
 .ui.header {
-  font-weight: 100 !important;
-  font-family: Pacifico, cursive !important;
-  color: #00b5ad !important;
+  font-weight: 200 !important;
+  font-family: 'Cormorant', serif !important;
+  color: #003633 !important;
 }
 
 #root {
-  font-family: Pacifico, cursive !important;
-  color: #00b5ad;
-  font-weight: 100 !important;
+  font-family: 'Cormorant', cursive !important;
+  color: #266d69;
+  font-weight: 300 !important;
 }

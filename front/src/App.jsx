@@ -3,19 +3,15 @@ import 'semantic-ui-css/semantic.min.css'
 import { createMedia } from '@artsy/fresnel'
 import { Container, Divider, Grid, Header, Image, Loader, Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import wedding from './assets/wed2.svg'
+import wedding from './assets/wedding2.svg'
+import reg from './assets/reg.jpg'
+import reg2 from './assets/reg3.jpg'
 import { useEffect, useState } from 'react'
 import { AgreeModal, RejectModal } from './Modals'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const { MediaContextProvider, Media } = createMedia({
-  breakpoints: {
-    mobile: 0,
-    tablet: 768,
-    computer: 1024
-  }
-})
+const { MediaContextProvider, Media } = createMedia({ breakpoints: { mobile: 0, tablet: 768, computer: 1024 } })
 
 const deadline = new Date('2023-12-16 15:00:00').getTime()
 
@@ -39,29 +35,6 @@ const HomepageHeading = ({ mobile }) => {
   return (
     <div style={{ marginTop: mobile ? '160px' : '0px' }}>
       <Container>
-        <Header
-          as="h2"
-          content="Приглашение на свадьбу"
-          style={{
-            fontFamily: 'Pacifico, cursive',
-            fontSize: mobile ? '1.5em' : '1.7em',
-            fontWeight: '100',
-            marginBottom: 0,
-            marginTop: mobile ? '1.5em' : '3em',
-            color: '#00b5ad'
-          }}
-        />
-        <Header
-          as="h1"
-          content="Виталия и Ксении"
-          style={{
-            fontFamily: 'Pacifico, cursive',
-            fontSize: mobile ? '2em' : '4em',
-            fontWeight: '100',
-            marginTop: mobile ? '0.1rem' : '0.5rem',
-            color: '#00b5ad'
-          }}
-        />
         <Image src={wedding} size="medium" centered />
         <Header
           as="h2"
@@ -86,16 +59,53 @@ const HomepageHeading = ({ mobile }) => {
   )
 }
 
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool
-}
+HomepageHeading.propTypes = { mobile: PropTypes.bool }
 
 const DesktopContainer = ({ children }) => {
+  const { mobile } = children
   return (
     <Media greaterThan="mobile">
+      <div>
+        <Header
+          textAlign="center"
+          as="h2"
+          content="ВИТАЛИЙ & КСЕНИЯ"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1.5em' : '3em',
+            fontWeight: '100',
+            marginBottom: 0,
+            marginTop: mobile ? '0.5em' : '1em',
+            color: '#003633'
+          }}
+        />
+        <Header
+          as="h1"
+          textAlign="center"
+          content="16.12.2023"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1em' : '2em',
+            fontWeight: '100',
+            marginTop: mobile ? '0.1rem' : '0.5rem'
+          }}
+        />
+        <Header
+          as="h1"
+          textAlign="center"
+          content="ПРИГЛАШЕНИЕ НА СВАДЬБУ"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1.3em' : '2em',
+            fontWeight: '100',
+            marginTop: mobile ? '0.1rem' : '0.5rem',
+            marginBottom: '1rem'
+          }}
+        />
+      </div>
       <Segment
         textAlign="center"
-        style={{ minHeight: 700, padding: '1em 0em', backgroundImage: "url('/wall.svg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+        style={{ minHeight: 400, padding: '1em 0em', backgroundImage: "url('/wall.svg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
         vertical
       >
         <HomepageHeading />
@@ -105,13 +115,50 @@ const DesktopContainer = ({ children }) => {
   )
 }
 
-DesktopContainer.propTypes = {
-  children: PropTypes.node
-}
+DesktopContainer.propTypes = { children: PropTypes.node }
 
 const MobileContainer = ({ children }) => {
+  const { mobile } = children
   return (
     <Media at="mobile">
+      <div>
+        <Header
+          textAlign="center"
+          as="h2"
+          content="ВИТАЛИЙ & КСЕНИЯ"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1.5em' : '3em',
+            fontWeight: '100',
+            marginBottom: 0,
+            marginTop: mobile ? '0.5em' : '1em',
+            color: '#003633'
+          }}
+        />
+        <Header
+          as="h1"
+          textAlign="center"
+          content="16.12.2023"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1em' : '2em',
+            fontWeight: '100',
+            marginTop: mobile ? '0.1rem' : '0.5rem'
+          }}
+        />
+        <Header
+          as="h1"
+          textAlign="center"
+          content="ПРИГЛАШЕНИЕ НА СВАДЬБУ"
+          style={{
+            fontFamily: 'Pacifico, cursive',
+            fontSize: mobile ? '1.3em' : '2em',
+            fontWeight: '100',
+            marginTop: mobile ? '0.1rem' : '0.5rem',
+            marginBottom: '1rem'
+          }}
+        />
+      </div>
       <Segment
         textAlign="center"
         style={{
@@ -130,9 +177,7 @@ const MobileContainer = ({ children }) => {
   )
 }
 
-MobileContainer.propTypes = {
-  children: PropTypes.node
-}
+MobileContainer.propTypes = { children: PropTypes.node }
 
 const ResponsiveContainer = ({ children }) => (
   <MediaContextProvider id="media-context">
@@ -141,9 +186,7 @@ const ResponsiveContainer = ({ children }) => (
   </MediaContextProvider>
 )
 
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node
-}
+ResponsiveContainer.propTypes = { children: PropTypes.node }
 
 const App = () => {
   const params = useParams()
@@ -237,65 +280,77 @@ const App = () => {
         <Grid celled="internally" columns="equal" stackable>
           <Grid.Row textAlign="center">
             <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-              <Header as="h3" style={{ fontSize: '2em' }}>
-                Регистрация
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>Регистрация пройдет 16 декабря в 15:00 в Доме семейных торжеств (ул. Проспект Мира 24 Г)</p>
+              <Image style={{ objectFit: 'cover', maxHeight: '300px', maxWidth: '300px', height: '300px' }} src={reg} centered size="medium" />
+              <div style={{ marginTop: '1rem' }}>
+                <Header as="h3" style={{ fontSize: '2em' }}>
+                  Регистрация
+                </Header>
+                <p style={{ fontSize: '1.33em' }}>Регистрация пройдет 16 декабря в 15:00</p>
+                <p style={{ fontSize: '1.33em' }}> в Доме семейных торжеств по адресу ул. Проспект Мира, 24Г</p>
+              </div>
             </Grid.Column>
             <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-              <Header as="h3" style={{ fontSize: '2em' }}>
-                Банкет
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>Банкет пройдет в ресторан Buon Gusto (ул. Молокова 1, к 1). Сбор гостей в 16:00</p>
+              <Image src={reg2} style={{ objectFit: 'cover', maxHeight: '300px', maxWidth: '300px', height: '300px' }} centered size="medium" />
+              <div style={{ marginTop: '1rem' }}>
+                <Header as="h3" style={{ fontSize: '2em' }}>
+                  Банкет
+                </Header>
+                <p style={{ fontSize: '1.33em' }}>Банкет пройдет в ресторан Buon Gusto по адресу ул. Молокова 1, к 1.</p>
+                <p style={{ fontSize: '1.33em' }}> Сбор гостей в 16:00</p>
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
 
-      <Segment>
-        <Container>
-          <Header as="h2" textAlign="center" style={{ fontSize: '2em' }} content="Мы будем очень рады, если вы поддержите цветовую палитру нашего торжества:" />
-          <div>
-            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/d3d4d8/d3d4d8" />
-              <Image circular src="https://placehold.co/100x100/ddc6b6/ddc6b6" />
-              <Image circular src="https://placehold.co/100x100/7d2c19/7d2c19" />
-            </Image.Group>
-            <Divider hidden />
-            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/3db0fb/3db0fb" />
-              <Image circular src="https://placehold.co/100x100/4ac6c8/4ac6c8" />
-              <Image circular src="https://placehold.co/100x100/186145/186145" />
-            </Image.Group>
-            <Divider hidden />
-            <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Image circular src="https://placehold.co/100x100/eec1be/eec1be" />
-              <Image circular src="https://placehold.co/100x100/e21d4b/e21d4b" />
-              <Image circular src="https://placehold.co/100x100/71152b/71152b" />
-            </Image.Group>
-          </div>
-        </Container>
-      </Segment>
+      <Container style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+        <Header as="h2" textAlign="center" style={{ fontSize: '2em' }} content="Дресс-код" />
+        <Header
+          as="h2"
+          textAlign="center"
+          style={{ fontSize: '1.6em', color: '#266d69 !important' }}
+          content="Мы будем очень рады, если вы поддержите цветовую палитру нашего торжества:"
+        />
+        <div>
+          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Image circular src="https://placehold.co/100x100/d3d4d8/d3d4d8" />
+            <Image circular src="https://placehold.co/100x100/ddc6b6/ddc6b6" />
+            <Image circular src="https://placehold.co/100x100/7d2c19/7d2c19" />
+          </Image.Group>
+          <Divider hidden />
+          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Image circular src="https://placehold.co/100x100/3db0fb/3db0fb" />
+            <Image circular src="https://placehold.co/100x100/4ac6c8/4ac6c8" />
+            <Image circular src="https://placehold.co/100x100/186145/186145" />
+          </Image.Group>
+          <Divider hidden />
+          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Image circular src="https://placehold.co/100x100/eec1be/eec1be" />
+            <Image circular src="https://placehold.co/100x100/e21d4b/e21d4b" />
+            <Image circular src="https://placehold.co/100x100/71152b/71152b" />
+          </Image.Group>
+        </div>
+      </Container>
 
-      <Segment inverted vertical style={{ padding: '5em 0em' }}>
+      <Segment vertical style={{ padding: '2em 0em' }}>
         <Container>
           <Grid divided stackable>
             <Grid.Row textAlign="center">
               <Grid.Column textAlign="center">
-                <Header as="h4" inverted>
+                <Header as="h2" style={{ color: '#ffffff !important', fontSize: '2rem' }}>
                   Важная информация!
                 </Header>
                 <p>При изменении планов, просьба, заранее собщить об этом.</p>
                 <p>Более подробную информацию можно получить по телефонам:</p>
                 <p>
                   Виталий:
-                  <a style={{ color: 'white' }} href="tel:+79131804786">
+                  <a style={{ color: '#266d69' }} href="tel:+79131804786">
                     +7-913-180-47-86
                   </a>
                 </p>
                 <p>
                   Ксения:
-                  <a style={{ color: 'white' }} href="tel:+79131804786">
+                  <a style={{ color: '#266d69' }} href="tel:+79131804786">
                     +7-913-183-63-83
                   </a>
                 </p>
