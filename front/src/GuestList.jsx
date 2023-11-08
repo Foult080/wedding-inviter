@@ -64,7 +64,7 @@ const GuestList = () => {
                   </Table.Cell>
                   <Table.Cell>{formatDateTimeShort(item.mddate)}</Table.Cell>
                   <Table.Cell>
-                    <Link to={'http://95.163.242.71:5000/' + item.id}>{'http://95.163.242.71:5000/' + item.id}</Link>
+                    <Link to={'http://свадьба-лисянских.рф/' + item.id}>{'http://свадьба-лисянских.рф/' + item.id}</Link>
                   </Table.Cell>
                 </Table.Row>
               ))}
