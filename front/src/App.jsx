@@ -312,19 +312,19 @@ const App = () => {
           content="Нам будет особенно приятно видеть вас в нарядах цветовой гаммы  нашей свадьбы:"
         />
         <div>
-          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
             <Image circular src="https://placehold.co/100x100/d3d4d8/d3d4d8" />
             <Image circular src="https://placehold.co/100x100/ddc6b6/ddc6b6" />
             <Image circular src="https://placehold.co/100x100/7d2c19/7d2c19" />
           </Image.Group>
           <Divider hidden />
-          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
             <Image circular src="https://placehold.co/100x100/3db0fb/3db0fb" />
             <Image circular src="https://placehold.co/100x100/4ac6c8/4ac6c8" />
             <Image circular src="https://placehold.co/100x100/186145/186145" />
           </Image.Group>
           <Divider hidden />
-          <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Image.Group size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
             <Image circular src="https://placehold.co/100x100/eec1be/eec1be" />
             <Image circular src="https://placehold.co/100x100/e21d4b/e21d4b" />
             <Image circular src="https://placehold.co/100x100/71152b/71152b" />
