@@ -12,7 +12,7 @@ router.get('/health', async (req, res) => {
 router.get('/guests', async (req, res) => {
   try {
     const [guests] = await db.query('select id, guest, invite_msg, additional_guest, guest_count, status, mddate from guests order by guest asc')
-    const [guestsCount] = await db.query('select sum(guest_count) as guests from guests')
+    const [guestsCount] = await db.query('select sum(guest_count) as guests from guests where status = 2')
     return res.status(200).json({ success: true, data: guests, count: guests.length, guestsCount: guestsCount[0] })
   } catch (error) {
     console.error(error)
