@@ -54,7 +54,7 @@ export const AgreeModal = ({ guest, msg, setDecision }) => {
       <Modal.Header>{msg}</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <p>* При возникновении осложений с заполнением формы, пожалуйста, обратитесь к отправителю</p>
+          <p>* При возникновении сложностей с заполнением формы, пожалуйста, обратитесь к отправителю</p>
           <Form>
             <Form.Input
               label="Фамилия и Имя"
