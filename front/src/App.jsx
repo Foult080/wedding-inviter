@@ -39,7 +39,7 @@ const HomepageHeading = ({ mobile }) => {
         <Header
           as="h2"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontWeight: '100',
             color: '#00b5ad'
           }}
@@ -48,7 +48,7 @@ const HomepageHeading = ({ mobile }) => {
         <Header
           as="h1"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontWeight: '100',
             color: '#00b5ad'
           }}
@@ -71,7 +71,7 @@ const DesktopContainer = ({ children }) => {
           as="h2"
           content="ВИТАЛИЙ & КСЕНИЯ"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1.5em' : '3em',
             fontWeight: '100',
             marginBottom: 0,
@@ -84,7 +84,7 @@ const DesktopContainer = ({ children }) => {
           textAlign="center"
           content="16.12.2023"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1em' : '2em',
             fontWeight: '100',
             marginTop: mobile ? '0.1rem' : '0.5rem'
@@ -95,7 +95,7 @@ const DesktopContainer = ({ children }) => {
           textAlign="center"
           content="ПРИГЛАШЕНИЕ НА СВАДЬБУ"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1.3em' : '2em',
             fontWeight: '100',
             marginTop: mobile ? '0.1rem' : '0.5rem',
@@ -127,7 +127,7 @@ const MobileContainer = ({ children }) => {
           as="h2"
           content="ВИТАЛИЙ & КСЕНИЯ"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1.5em' : '3em',
             fontWeight: '100',
             marginBottom: 0,
@@ -140,7 +140,7 @@ const MobileContainer = ({ children }) => {
           textAlign="center"
           content="16.12.2023"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1em' : '2em',
             fontWeight: '100',
             marginTop: mobile ? '0.1rem' : '0.5rem'
@@ -151,7 +151,7 @@ const MobileContainer = ({ children }) => {
           textAlign="center"
           content="ПРИГЛАШЕНИЕ НА СВАДЬБУ"
           style={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: mobile ? '1.3em' : '2em',
             fontWeight: '100',
             marginTop: mobile ? '0.1rem' : '0.5rem',
@@ -309,7 +309,7 @@ const App = () => {
           as="h2"
           textAlign="center"
           style={{ fontSize: '1.6em', color: '#266d69 !important' }}
-          content="Мы будем очень рады, если вы поддержите цветовую палитру нашего торжества:"
+          content="Нам будет особенно приятно видеть вас в нарядах цветовой гаммы  нашей свадьбы:"
         />
         <div>
           <Image.Group centered size="tiny" style={{ display: 'flex', justifyContent: 'center' }}>
